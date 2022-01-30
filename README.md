@@ -1,12 +1,15 @@
 ## ipfs-uploader CLI
 
-Basic CLI to upload files to PFS and store the resulting CID in a smart contract.
+Basic CLI to upload files to IPFS and store the resulting CID in a smart contract.
+
+The project is based on Truffle and TypeScript.
 
 
 ### Usage
 - Clone repo and cd into repo directory
 - install deps with `npm install`
-- Compile with `tsc`
+- Compile and depoy smart contracts with `truffle migrate`
+- Compile TS with `tsc`
 - Install with `npm install -g .`
 - Provide necessary environment variables (ref: .env.sample)
 - Run with `ipfs-uploader`
@@ -17,4 +20,4 @@ Basic CLI to upload files to PFS and store the resulting CID in a smart contract
 ### Dev setup
 - Clone repo and cd into repo directory
 - Install deps with `npm install`
-- Code
+- Code :)

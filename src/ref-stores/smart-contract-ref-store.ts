@@ -1,6 +1,6 @@
 import Web3 from "web3";
 import { RefStore } from "./ref-store";
-import FILE_STORE_CONTRACT_ARTEFACT from '../assets/contracts/file-store-contract.artefact.json'
+import FILE_STORE_CONTRACT_ARTEFACT from '../assets/contracts/FileStore.json'
 import chalk from "chalk";
 const Contract = require('@truffle/contract')
 
