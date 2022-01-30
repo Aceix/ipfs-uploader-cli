@@ -12,7 +12,7 @@ The project is based on [Truffle](https://trufflesuite.com/) and [TypeScript](ht
 - Compile TS with `tsc`
 - Install with `npm install -g .`
 - Provide necessary environment variables (ref: .env.sample)
-- Run with `ipfs-uploader`
+- Run with `ipfs-uploader` (you might need to make the file executable)
 
 **For more information run `ipfs-uploader help`**
 
