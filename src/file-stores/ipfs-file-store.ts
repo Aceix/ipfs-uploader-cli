@@ -10,7 +10,7 @@ export class IpfsFileStore implements FileStore {
   private instance: IPFSHTTPClient
   
   constructor(url?: URL | string | multiaddr) {  
-    console.log(chalk(`Connecting to IPFS via ${url}...`))
+    console.log(chalk(`Connecting to IPFS via ${url ?? 'default address'}...`))
     this.instance = IPFS.create({ url, })
   }
 

@@ -15,8 +15,6 @@ program
     WEB3_PROVIDER, WEB3_ACCOUNT, FILE_STORE_SMART_CONTRACT_ADDRESS, IPFS_URL\
   ')
   .version('0.0.1')
-  .argument('<filePath>', 'Path to file to upload')
-  .action(uploadAction)
 
 program.command('upload')
   .description('Upload a file to IPFS')
