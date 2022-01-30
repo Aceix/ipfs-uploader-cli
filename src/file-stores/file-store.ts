@@ -9,4 +9,4 @@ export interface FileStore {
   store(stream: string): FileId | Promise<FileId | undefined>,
 }
 
-export type FileId = IPFS.CID
+export type FileId = IPFS.CID | string

@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#! /usr/bin/env -S node --no-deprecation
 
 import 'dotenv/config'
 import { Command } from 'commander'
@@ -18,8 +18,6 @@ program.command('upload')
   .description('Upload a file to IPFS')
   .argument('<filePath>', 'The file to upload')
   .option('--url <url>', "URL/MultiAddr of the IPFS node\nOverrides 'IPFS_URL' env variable")
-  .action(uploadAction);
-
-// TODO: write unit tests
+  .action(uploadAction)
 
 program.parse()

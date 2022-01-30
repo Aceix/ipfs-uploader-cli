@@ -1,11 +1,12 @@
 import fs from 'node:fs'
 import chalk from "chalk"
 import { IpfsFileStore } from '../file-stores/ipfs-file-store'
-import { FileId } from '../file-stores/file-store'
+import { FileId, FileStore } from '../file-stores/file-store'
 import { SmartContractRefStore } from '../ref-stores/smart-contract-ref-store'
+import { RefStore } from '../ref-stores/ref-store'
 
 
-async function uploadAction(filePath: string, options: any) {
+export async function uploadAction(filePath: string, options: any) {
   try {
     // verify file exists
     if (!fs.existsSync(filePath)) {
@@ -14,9 +15,14 @@ async function uploadAction(filePath: string, options: any) {
     }
 
     const ipfsUrl = options?.url ?? process.env.IPFS_URL
-    const id = await uploadToFileStore(filePath, ipfsUrl)
+    const ipfsFiletore = new IpfsFileStore(ipfsUrl)
+    const id = await uploadToFileStore(filePath, ipfsFiletore)
     if (id) {
-      await saveFileRef(id)
+      const smartContractRefStore = new SmartContractRefStore(
+        process.env.RPC_SERVER_ADDRESS as string,
+        process.env.WEB3_ACCOUNT as string,
+      )
+      await saveFileRef(id, smartContractRefStore)
     } else {
       console.error(chalk.red(`Error: Failed to upload file '${filePath}' to IPFS`))
     }
@@ -26,12 +32,9 @@ async function uploadAction(filePath: string, options: any) {
   }
 }
 
-async function uploadToFileStore(filePath: string, url?: string): Promise<FileId | undefined> {
+export async function uploadToFileStore(filePath: string, fileStore: FileStore): Promise<FileId | undefined> {
   try {
-    const ipfsFiletore = new IpfsFileStore(url)
-
-    const cid = await ipfsFiletore.store(filePath)
-
+    const cid = await fileStore.store(filePath)
     return cid
   } catch(err: any) {
     console.error(chalk.red(err))
@@ -39,17 +42,10 @@ async function uploadToFileStore(filePath: string, url?: string): Promise<FileId
   }
 }
 
-async function saveFileRef(fileRef: FileId) {
+export async function saveFileRef(fileRef: FileId, refStore: RefStore) {
   try {
-    const smartContractRefStore = new SmartContractRefStore(
-      process.env.RPC_SERVER_ADDRESS as string,
-      process.env.WEB3_ACCOUNT as string,
-    )
-
-    const id = smartContractRefStore.saveRef(fileRef)
+    return await refStore.saveRef(fileRef)
   } catch(err) {
     console.error(chalk.red(err))
   }
 }
-
-export { uploadAction }
