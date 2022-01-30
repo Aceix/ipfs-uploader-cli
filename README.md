@@ -2,7 +2,7 @@
 
 Basic CLI to upload files to IPFS and store the resulting CID in a smart contract.
 
-The project is based on Truffle and TypeScript.
+The project is based on [Truffle](https://trufflesuite.com/) and [TypeScript](https://www.typescriptlang.org/).
 
 
 ### Usage
