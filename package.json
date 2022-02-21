@@ -1,5 +1,5 @@
 {
-  "name": "chainsafe-test",
+  "name": "ipfs-uploader-cli",
   "version": "1.0.0",
   "description": "Basic CLI project for storing files in IPFS",
   "scripts": {
